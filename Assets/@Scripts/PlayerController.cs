@@ -1,11 +1,53 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float Speed = 3f;
+
+    #region SingleTon
+
+    private static PlayerController s_instance = null;
     
-    
+    public static PlayerController Instance
+    {
+        get
+        {
+            if (s_instance == null)
+                return null;
+            return s_instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if(s_instance == null)
+        {
+            s_instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion
+
+    const int _maxHp = 100;
+    int _currentHp = 100;
+
+    public int HP
+    {
+        get { return _currentHp; }
+        set
+        {
+            _currentHp = value;
+            if (_currentHp <= 0) _currentHp = 0;
+            else if (_currentHp >= _maxHp) _currentHp = _maxHp;
+        }
+    }
+
     void Update()
     {
         if(Input.GetButton("Horizontal"))
@@ -25,7 +67,12 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("Result");
+            _currentHp -= 20;
+            // 게임 종료
+            if (_currentHp <= 0)
+            {
+                SceneManager.LoadScene("Result");
+            }
         }
     }
 }
