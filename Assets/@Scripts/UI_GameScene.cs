@@ -25,7 +25,21 @@ public class UI_GameScene : MonoBehaviour
             ScoreText.text = GameManager.Instance.Score.ToString();
         }
 
-        float hp = PlayerController.Instance.HP / 100;
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_isPaused)
+            {
+                Time.timeScale = 1.0f;
+                _isPaused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                _isPaused = true;
+            }
+        }
+
+        float hp = PlayerController.Instance.HP / 100f;
         CurrentHp.fillAmount = hp;
     }
 

@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class HealthKit : MonoBehaviour
 {
     Rigidbody2D _rigidbody;
+
 
     void Awake()
     {
@@ -11,7 +12,7 @@ public class Coin : MonoBehaviour
 
     private void OnEnable()
     {
-        float posX = Random.Range(-100f, 100f);
+        float posX = Random.Range(-50f, 50f);
         float posY = Random.Range(200f, 300f);
         _rigidbody.AddForce(new Vector3(posX, posY, 0));
         // 코인과 키트 일정 시간 후 비활성화
@@ -22,7 +23,7 @@ public class Coin : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            GameManager.Instance.Score += 1;
+            PlayerController.Instance.HP += 30;
             gameObject.SetActive(false);
             CancelInvoke("Deactivate");
         }

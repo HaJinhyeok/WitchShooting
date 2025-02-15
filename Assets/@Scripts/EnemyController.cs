@@ -1,9 +1,11 @@
+using TreeEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     public GameObject Effect;
     public GameObject Coin;
+    public GameObject Kit;
 
     int _currentHp = 3;
     Animator _animator;
@@ -30,19 +32,30 @@ public class EnemyController : MonoBehaviour
             {
                 GameManager.Instance.Score += 5;
                 Instantiate(Effect, transform.position, Quaternion.identity);
-                MakeCoin();
+                // MakeCoin();
+                // MakeKit();
+                ItemProcess.SpawnItemDel(transform.position);
                 Destroy(gameObject);
             }
         }
     }
 
-    void MakeCoin()
-    {
-        int rnd = Random.Range(0, 4);
-        for (int i = 0; i < rnd; i++)
-        {
-            Instantiate(Coin, transform.position, Quaternion.identity);
+    //void MakeCoin()
+    //{
+    //    int rnd = Random.Range(0, 4);
+    //    for (int i = 0; i < rnd; i++)
+    //    {
+    //        Instantiate(Coin, transform.position, Quaternion.identity);
 
-        }
-    }
+    //    }
+    //}
+
+    //void MakeKit()
+    //{
+    //    int rnd = Random.Range(0, 2);
+    //    for (int i = 0; i < rnd; i++)
+    //    {
+    //        Instantiate(Kit, transform.position, Quaternion.identity);
+    //    }
+    //}
 }
