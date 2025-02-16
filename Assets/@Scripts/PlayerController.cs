@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public Vector3 Pos
+    {
+        get { return transform.position; }
+    }
+
     void Update()
     {
         if(Input.GetButton("Horizontal"))
@@ -68,11 +73,26 @@ public class PlayerController : MonoBehaviour
         if(collision.CompareTag("Enemy"))
         {
             _currentHp -= 20;
+            Destroy(collision.gameObject);
             // 게임 종료
             if (_currentHp <= 0)
             {
-                SceneManager.LoadScene("Result");
+                Die();
             }
         }
+        if(collision.CompareTag("Meteo"))
+        {
+            _currentHp -= 40;
+            Destroy(collision.gameObject);
+            if (_currentHp <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    void Die()
+    {
+        SceneManager.LoadScene("Result");
     }
 }

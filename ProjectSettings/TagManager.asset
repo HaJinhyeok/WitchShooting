@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - HealthKit
   - Wall
+  - Meteo
   layers:
   - Default
   - TransparentFX

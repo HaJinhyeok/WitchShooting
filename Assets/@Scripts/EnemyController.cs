@@ -32,30 +32,9 @@ public class EnemyController : MonoBehaviour
             {
                 GameManager.Instance.Score += 5;
                 Instantiate(Effect, transform.position, Quaternion.identity);
-                // MakeCoin();
-                // MakeKit();
                 ItemProcess.SpawnItemDel(transform.position);
                 Destroy(gameObject);
             }
         }
     }
-
-    //void MakeCoin()
-    //{
-    //    int rnd = Random.Range(0, 4);
-    //    for (int i = 0; i < rnd; i++)
-    //    {
-    //        Instantiate(Coin, transform.position, Quaternion.identity);
-
-    //    }
-    //}
-
-    //void MakeKit()
-    //{
-    //    int rnd = Random.Range(0, 2);
-    //    for (int i = 0; i < rnd; i++)
-    //    {
-    //        Instantiate(Kit, transform.position, Quaternion.identity);
-    //    }
-    //}
 }
