@@ -7,6 +7,7 @@ public class UI_GameScene : MonoBehaviour
     public TMP_Text ScoreText;
     public Button PauseButton;
     public Image CurrentHp;
+    public GameObject PausePanel;
 
     int _tempScore;
     bool _isPaused = false;
@@ -14,6 +15,7 @@ public class UI_GameScene : MonoBehaviour
     private void Start()
     {
         PauseButton.onClick.AddListener(OnPauseButtonClick);
+        PausePanel.SetActive(false);
     }
 
     void Update()
@@ -31,11 +33,13 @@ public class UI_GameScene : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 _isPaused = false;
+                PausePanel.SetActive(false);
             }
             else
             {
                 Time.timeScale = 0;
                 _isPaused = true;
+                PausePanel.SetActive(true);
             }
         }
 
@@ -49,11 +53,13 @@ public class UI_GameScene : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             _isPaused = false;
+            PausePanel.SetActive(false);
         }
         else
         {
             Time.timeScale = 0;
             _isPaused = true;
+            PausePanel.SetActive(true);
         }
     }
 }
